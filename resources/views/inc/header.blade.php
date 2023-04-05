@@ -3,6 +3,7 @@ if(!isset($page)){
   $page = "";   
 }
 @endphp
+@include('util.submit_control')
 <nav class="navbar navbar-dark bg-dark">
     <div style="margin-left: 35%;">
         <p style="color: white;" class="fs-1">Happy Time Happy Tour</p>    
@@ -18,12 +19,16 @@ if(!isset($page)){
             </li>
             <li class="nav-item">
               <a class="nav-link @if($page == "contact") active @endif"
-               aria-current="interactive_novel" href="/contact"><p class="fs-5">ติดต่อเรา</p></a>
+                href="/contact"><p class="fs-5">ติดต่อเรา</p></a>
             </li>
+            @if(\Auth::check())
+            @if(\Auth::user()->is_admin())
             <li class="nav-item">
               <a class="nav-link @if($page == "add_tour") active @endif"
-               aria-current="interactive_novel" href="/tour/add"><p class="fs-5">เพิ่มโปรแกรมทัวร์</p></a>
+                href="/tour/add"><p class="fs-5">เพิ่มโปรแกรมทัวร์</p></a>
             </li>
+            @endif
+            @endif
           </ul>
         </div>
         <div class="collapse navbar-collapse" style="margin-left: 50%;">
@@ -35,7 +40,15 @@ if(!isset($page)){
               </li>
               <li class="nav-item">
                 <a class="nav-link @if($page == "login") active @endif"
-                 aria-current="interactive_novel" href="/login"><p class="fs-5">เข้าสู่ระบบ</p></a>
+                  href="/login"><p class="fs-5">เข้าสู่ระบบ</p></a>
+              </li>
+              @else
+              <li class="nav-item">
+                <a class="nav-link" href="#"
+                onclick="
+                send_form_data('/logout',{},()=>{ window.location = '/';});
+                "
+                ><p class="fs-5">ออกจากระบบ</p></a>
               </li>
               @endif
             </ul>

@@ -6,7 +6,7 @@
             </div>
             <div class="modal-body" align="center">
                 <div>
-                    <img src="{{$tour_img}}"
+                    <img src="{{$program_img}}"
                         onload="const cropper = new Cropper($(this).get()[0], {
             minContainerWidth: 700,
             minContainerHeight: 600,
@@ -29,10 +29,10 @@
                 <button type="button" class="btn btn-primary"
                     onclick="
             if(typeof glo_cropper !== 'undefined'){
-                console.log('wwq');
                 let src = glo_cropper.getCroppedCanvas().toDataURL('image/png');
-                $('#tour_img_preview').attr('src', src);
-                $('#tour_img').val(src)
+                $('#program_img_preview').attr('src', src);
+                $('#program_img').val(src)
+                $('#program_img').change();
                 $('#exampleModal').modal('hide');
             }
             ">ตกลง</button>

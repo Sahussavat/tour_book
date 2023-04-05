@@ -18,7 +18,9 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
+        'phone_no',
         'email',
         'password',
     ];
@@ -41,4 +43,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function is_admin(){
+        return $this->hasMany(Role_user::class)
+        ->where('role_id', Role::where('role_name', 'admin')->first()['id'])->exists();
+    }
 }

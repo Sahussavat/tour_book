@@ -20,7 +20,7 @@ if(isset($_POST['load'])) {
                 </div>
                 <div class="col">
                     <div class="input-group mb-3">
-                        <textarea class="form-control" style="resize: none;" rows="5">
+                        <textarea class="form-control day_detail" style="resize: none;" rows="5">
                 This is a longer card with supporting text below as a natural lead-in to
                 additional content. This content is a little bit longer.
                 </textarea>
@@ -35,7 +35,7 @@ if(isset($_POST['load'])) {
         </div>
     </li>
     @break    
-    @case('load_add_tour_img')
+    @case('load_add_program_img')
         @include('add_tour.add_tour_img', $_POST)
     @break
 @endswitch

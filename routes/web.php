@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\TourController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -48,3 +50,11 @@ Route::get('/tour/{tour_id}/book', function ($tour_id) {
 Route::get('/tour/{tour_id}/book/{book_id}', function ($tour_id, $book_id) {
     return view('tour_page.book_detail', ['tour_id' => $tour_id, 'book_id' => $book_id]);
 });
+
+
+//=========================================================
+Route::post('/register', [UserController::class, 'register']);
+Route::post('/login', [UserController::class, 'login']);
+Route::post('/logout', [UserController::class, 'logout']);
+Route::post('/program/add', [TourController::class, 'add_tour']);
+Route::post('/tour/book', [BookController::class, 'add_reservation']);
